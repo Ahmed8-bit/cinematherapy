@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cinematherapy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="text-center" id="main-body">
+  <div class="container py-5">
+    <h1 class="mb-4">🎬 Cinematherapy</h1>
+    <p class="lead">Tell Dr. Ahmed how you're feeling, and he'll prescribe you the perfect movies.</p>
+
+    <form action="/recommend" method="post" class="my-4">
+      <select name="mood" class="form-select form-select-lg mb-3" required>
+        <option disabled selected value="">How are you feeling?</option>
+        <option value="sad">😢 Sad</option>
+        <option value="happy">😊 Happy</option>
+        <option value="anxious">😰 Anxious</option>
+        <option value="angry">😠 Angry</option>
+        <option value="heartbroken">💔 Heartbroken</option>
+        <option value="burntout">😩 Burnt Out</option>
+        <option value="inlove">😍 In Love</option>
+        <option value="nostalgic">🕰️ Nostalgic</option>
+      </select>
+      <button type="submit" class="btn btn-primary btn-lg">Get Prescription</button>
+    </form>
+
+    <div class="quote-box">
+      <p id="quote-of-the-day">“Sometimes movies say what words cannot.”</p>
+    </div>
+
+    <button id="toggle-dark" class="btn btn-outline-secondary mt-4">🌙 Toggle Dark Mode</button>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById("toggle-dark");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("dark", document.body.classList.contains("dark-mode"));
+    });
+
+    // Load saved preference
+    if (localStorage.getItem("dark") === "true") {
+      document.body.classList.add("dark-mode");
+    }
+  </script>
+</body>
+</html>
+
